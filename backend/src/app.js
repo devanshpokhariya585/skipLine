@@ -31,7 +31,7 @@ app.get('/api/config', (req, res) =>
 );
 
 app.get('/', (req, res) =>           
-  res.json({ service: 'SkipLine API', health: '/api/health' })
+  res.json({ service: 'SkipLine API', at: '/root' })
 );
 
 app.use('/api/auth', require('./routes/auth.routes'));
