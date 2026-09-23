@@ -1,4 +1,5 @@
-# SkipLine - Smart Canteen
+# SkipLine - Smart Canteen 
+## By Devansh Pokhariya
 
 A full-stack mess/canteen ordering system with a prepaid **points wallet**.
 Branded **SkipLine**: _Smart Canteen Management, Without the Queue._
@@ -46,22 +47,16 @@ npm run dev                 # starts the API on http://localhost:4000
 | `MONTHLY_ALLOWANCE` | Points each student gets per month. | `8000` |
 | `DAILY_LIMIT` | Max a student can spend in one day. | `450` |
 | `DEFAULT_STUDENT_PASSWORD` | Fallback password for uploaded students. | `canteen@123` |
-| `ADMIN_LOGIN` / `ADMIN_PASSWORD` | The seeded mess-owner account. | `admin` / `admin@123` |
+| `ADMIN_LOGIN` / `ADMIN_PASSWORD` | The seeded mess-owner account.
 
 After `npm run seed` you can sign in with:
-
-| Role          | ID          | Password      |
-| ------------- | ----------- | ------------- |
-| Admin (owner) | `admin`     | `admin@123`   |
-| Chef          | `chef1`     | `chef@123`    |
-| Student       | `24bca0005` | `student@123` |
 
 > The chef and student are seeded with **must-reset-password** on, so the first
 > login walks them through choosing a new password. The admin password comes
 > straight from `.env`, so change `ADMIN_PASSWORD` before seeding in production.
 
 `npm run seed` also prints **three ready-to-use verification codes** (e.g.
-`SKP-7K9X2M`). Use one on the Register screen to create a student account, or
+`SKP-7K9XXX`). Use one on the Register screen to create a student account, or
 generate more from **Admin → Codes**.
 
 ### Adding real admins manually (in the database)
@@ -94,18 +89,6 @@ The app now opens on a **landing page**. From there:
 
 **Registration form** (all fields validated on the client _and_ re-validated on
 the server - the client checks are only for fast, friendly feedback):
-
-| Field | Rule |
-| | |
-| Full name | Letters and single spaces only; 2–60 chars; no digits/symbols |
-| Date of birth | Valid, not in the future, **age ≥ 16** (age is auto-calculated) |
-| Gender | One of Male / Female / Other / Prefer not to say |
-| VIT email | Must match `NNaaaNNNN@vitstudent.ac.in` (e.g. `24bca0014@vitstudent.ac.in`); lowercased; unique |
-| Phone | Exactly 10 digits, starts 6–9; unique |
-| Branch / Year / Semester | Must be one of the allowed values (served by `/api/config`) |
-| Password | ≥ 8 chars with upper, lower, number **and** special char; live checklist + show/hide |
-| Verification code | Must be a valid, active, unused (and unexpired) admin code |
-
 On success the student is signed in automatically and lands on their dashboard.
 The **login ID** is derived from the email local-part (the reg number), so they
 sign in next time with e.g. `24bca0014`.
@@ -122,11 +105,6 @@ sign in next time with e.g. `24bca0014`.
 - The full list of codes is **never** exposed to students - the backend only ever
   checks a submitted code and returns valid/invalid.
 
-**Double validation:** every rule above is enforced again in
-`backend/src/utils/validate.js`, so a request sent directly to the API
-(bypassing React) with e.g. `{ "dob": "2015-01-01" }` or an invalid category is
-still rejected with a field-specific error. Admin-only routes (codes, dishes,
-people) require an admin JWT.
 
 ## 5. How the points system works
 
@@ -190,12 +168,3 @@ frontend/
     styles.css     the full design system
 ```
 
-## 9. Notes
-
-- **`xlsx` advisory:** the npm build of SheetJS has a known advisory. It only ever
-  parses files an authenticated admin uploads. For the vendor-recommended build you
-  can install it straight from SheetJS instead:
-  `npm install https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz`
-- Order status polls every few seconds so students see updates without refreshing.
-  For instant push you could later add WebSockets/Server-Sent Events.
-- Timezone for "today" and the monthly reset uses the **server's** local time.
