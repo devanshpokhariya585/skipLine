@@ -30,6 +30,10 @@ app.get('/api/config', (req, res) =>
   })
 );
 
+app.get('/', (req, res) =>           
+  res.json({ service: 'SkipLine API', health: '/api/health' })
+);
+
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/menu', require('./routes/menu.routes'));
 app.use('/api/orders', require('./routes/orders.routes'));
