@@ -46,7 +46,7 @@ npm run dev                 # starts the API on http://localhost:4000
 | `MESS_NAME` | Shown across the app. | `SkipLine` |
 | `MONTHLY_ALLOWANCE` | Points each student gets per month. | `8000` |
 | `DAILY_LIMIT` | Max a student can spend in one day. | `450` |
-| `DEFAULT_STUDENT_PASSWORD` | Fallback password for uploaded students. | `canteen@123` |
+| `DEFAULT_STUDENT_PASSWORD` | Fallback password for uploaded students. | `contact_admin` |
 | `ADMIN_LOGIN` / `ADMIN_PASSWORD` | The seeded mess-owner account.
 
 After `npm run seed` you can sign in with:
