@@ -31,10 +31,10 @@ Stack: React + Vite (frontend), Node + Express + MongoDB/Mongoose (backend), JWT
 
 ```bash
 cd backend
-cp .env.example .env        # then edit .env (see below)
+cp .env.example .env       
 npm install
-npm run seed                # creates the admin, a demo chef + student, and a sample menu
-npm run dev                 # starts the API on http://localhost:4000
+npm run seed              
+npm run dev             
 ```
 After `npm run seed` you can sign in with:
 
@@ -56,9 +56,9 @@ user document with `role: "admin"` and a bcrypt password hash via Compass/mongos
 
 ```bash
 cd frontend
-cp .env.example .env        # optional; leave VITE_API_URL blank to use the dev proxy
+cp .env.example .env        
 npm install
-npm run dev                 # opens http://localhost:5173
+npm run dev                
 ```
 
 `frontend/.env`:
